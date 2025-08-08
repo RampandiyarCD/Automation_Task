@@ -1,0 +1,23 @@
+{
+  "name": "auto2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "report": "ts-node report.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^24.2.0",
+    "multiple-cucumber-html-reporter": "^3.9.3"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^12.1.0",
+    "dotenv": "^17.2.1",
+    "ts-node": "^10.9.2"
+  }
+}
