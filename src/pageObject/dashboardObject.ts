@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 import { page } from "../support/hooks";
 import { Utils } from "../utility/utility";
 
@@ -22,17 +23,11 @@ export class DashboardObject {
   }
 
   async selectCountry(listIndex: number) {
-    await utils.selectDropdown(
-      '//input[@id="«r19»"]',
-      `//li[@id="«r19»-option-${listIndex}"]`
-    );
+    await utils.selectDropdown("«r19»", listIndex);
   }
 
   async selectState(listIndex: number) {
-    await utils.selectDropdown(
-      '//input[@id="«r1c»"]',
-      `//li[@id="«r1c»-option-${listIndex}"]`
-    );
+    await utils.selectDropdown("«r1c»", listIndex);
   }
 
   async enterPincode(pincode: string) {
@@ -40,9 +35,29 @@ export class DashboardObject {
   }
 
   async selectCity(listIndex: number) {
-    await utils.selectDropdown(
-      '//input[@id="«r1g»"]',
-      `//li[@id="«r1g»-option-${listIndex}"]`
-    );
+    await utils.selectDropdown("«r1g»", listIndex);
+  }
+
+  async checkPractice() {
+    await utils.checkBox("Practice");
+  }
+
+  async checkGraded() {
+    await utils.checkBox("Graded");
+  }
+
+  async checkIterview() {
+    await utils.checkBox("Interview");
+  }
+
+
+  async createBtn() {
+    await page.locator("//p[text()='Create']").click();
+  }
+
+  async error(expectedMessage: string) {
+    await expect(
+      page.getByText(expectedMessage, { exact: true })
+    ).toBeVisible();
   }
 }

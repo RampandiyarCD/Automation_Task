@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 import { page } from "../support/hooks";
 
 export class LoginObject {
@@ -18,6 +19,8 @@ export class LoginObject {
   }
 
   async error(expectedMessage: string) {
-    page.getByText(expectedMessage, { exact: true });
+    await expect(
+      page.getByText(expectedMessage, { exact: true })
+    ).toBeVisible();
   }
 }

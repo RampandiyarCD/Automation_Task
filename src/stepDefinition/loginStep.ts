@@ -1,6 +1,7 @@
 import { Given, Then, When } from "@cucumber/cucumber";
 import { LoginPage } from "../pageAction/loginAction";
 import { LoginObject } from "../pageObject/loginObject";
+import { page } from "../support/hooks";
 
 const loginPage = new LoginPage();
 const loginObject = new LoginObject();
@@ -23,6 +24,7 @@ When("I click the login button", async () => {
 
 Then("I should be logged in successfully", async () => {
   await loginObject.afterLogin();
+  await page.getByText("Dashboard").waitFor(); 
 });
 
 When("I enter an incorrect password {string}", async (password: string) => {

@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
+    "test:dash": "cucumber-js --tags=@dashboard",
     "report": "ts-node report.ts"
   },
   "keywords": [],
