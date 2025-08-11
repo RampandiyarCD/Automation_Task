@@ -7,7 +7,6 @@ const dashObject = new DashboardObject();
 const utils = new Utils();
 
 Given("I am in the organization tab", async () => {
-  await utils.login();
   await dashObject.goToOrganization();
 });
 

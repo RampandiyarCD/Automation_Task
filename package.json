@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
+    "test:login": "cucumber-js --tags=@login",
     "test:dash": "cucumber-js --tags=@dashboard",
+    "test:user": "cucumber-js --tags=@User",
     "report": "ts-node report.ts"
   },
   "keywords": [],

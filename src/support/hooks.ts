@@ -1,12 +1,13 @@
 import {
   After,
-  AfterAll,
   BeforeAll,
   setDefaultTimeout,
   Status,
 } from "@cucumber/cucumber";
 import { Browser, BrowserContext, chromium, Page } from "@playwright/test";
 import * as dotenv from "dotenv";
+import { LoginPage } from "../pageAction/loginAction";
+import { LoginObject } from "../pageObject/loginObject";
 
 dotenv.config();
 
@@ -23,16 +24,20 @@ BeforeAll(async () => {
   context = await browser.newContext({ viewport: null });
   page = await context.newPage();
 
-  console.log("Starting......");
+  const loginPage = new LoginPage();
+  const loginObject = new LoginObject();
+
+  await loginPage.navigateUrl();
+  await loginObject.enterEmail(process.env.ADMIN_EMAIL!);
+  await loginObject.enterPassword(process.env.ADMIN_PASSWORD!);
+  await loginObject.clickLogin();
+  await loginObject.afterLogin();
+
+  console.log("Login.....");
 });
+
 After(async function ({ result }) {
   if (result?.status === Status.FAILED) {
     await page.screenshot({ path: "error.png" });
   }
-});
-AfterAll(async () => {
-  await context.close();
-  await browser.close();
-
-  console.log("Closing.......");
 });

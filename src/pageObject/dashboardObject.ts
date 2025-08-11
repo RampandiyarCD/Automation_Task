@@ -5,7 +5,7 @@ import { Utils } from "../utility/utility";
 const utils = new Utils();
 export class DashboardObject {
   async goToOrganization() {
-    await page.locator("//p[text()='Organization']").click();
+    await utils.ptag("Organization");
   }
 
   async goToTab() {
@@ -23,11 +23,11 @@ export class DashboardObject {
   }
 
   async selectCountry(listIndex: number) {
-    await utils.selectDropdown("«r19»", listIndex);
+    await utils.selectDropdown("Select Country", listIndex);
   }
 
   async selectState(listIndex: number) {
-    await utils.selectDropdown("«r1c»", listIndex);
+    await utils.selectDropdown("Select State", listIndex);
   }
 
   async enterPincode(pincode: string) {
@@ -35,7 +35,7 @@ export class DashboardObject {
   }
 
   async selectCity(listIndex: number) {
-    await utils.selectDropdown("«r1g»", listIndex);
+    await utils.selectDropdown("Select State", listIndex);
   }
 
   async checkPractice() {
@@ -49,7 +49,6 @@ export class DashboardObject {
   async checkIterview() {
     await utils.checkBox("Interview");
   }
-
 
   async createBtn() {
     await page.locator("//p[text()='Create']").click();
