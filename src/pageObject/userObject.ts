@@ -29,10 +29,10 @@ export class UserObject {
     await page.locator(`//li[@data-option-index='${index}']`).click();
   }
 
-  async chooseFile() {
+  async chooseFile(filePath:string) {
     await page
       .locator("//button[contains(., 'Choose File')]//input[@type='file']")
-      .setInputFiles("/home/Ram/Downloads/bulk-sample-user.csv");
+      .setInputFiles(filePath);
   }
 
   async choosePrevious() {
@@ -49,5 +49,9 @@ export class UserObject {
 
   async confirm() {
     await utils.ptag("Confirm & Create");
+  }
+
+  async error() {
+    await utils.ptag("Your file contains errors");
   }
 }

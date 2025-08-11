@@ -36,17 +36,29 @@ When("I select the Organisation choose dropdown", async () => {
 });
 
 When("I choose file", async () => {
-  await userObject.chooseFile();
+  await userObject.chooseFile(
+    "/home/Ram/Documents/Automation/Auto2/Csv/bulk-sample-user.csv"
+  );
 });
 
 When("I select Yes, I want to add tags", async () => {
   await userObject.selectTag();
 });
 
-When("I select tags",async()=>{
+When("I select tags", async () => {
   await userObject.tagDrop();
 });
 
-Then("I select confirm and select",async()=>{
+Then("I select confirm and select", async () => {
   await userObject.confirm();
+});
+
+When("I choose dupilicate file", async () => {
+  await userObject.chooseFile(
+    "/home/Ram/Documents/Automation/Auto2/Csv/bulk-sample-user.csv"
+  );
+});
+
+Then("I get error for getting duplicate values", async () => {
+  await userObject.error();
 });

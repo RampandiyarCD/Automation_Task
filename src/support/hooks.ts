@@ -7,7 +7,8 @@ import {
 import { Browser, BrowserContext, chromium, Page } from "@playwright/test";
 import * as dotenv from "dotenv";
 import { LoginPage } from "../pageAction/loginAction";
-import { LoginObject } from "../pageObject/loginObject";
+import randomstring from "randomstring";
+import { Utils } from "../utility/utility";
 
 dotenv.config();
 
@@ -25,19 +26,19 @@ BeforeAll(async () => {
   page = await context.newPage();
 
   const loginPage = new LoginPage();
-  const loginObject = new LoginObject();
+  const utils = new Utils();
 
   await loginPage.navigateUrl();
-  await loginObject.enterEmail(process.env.ADMIN_EMAIL!);
-  await loginObject.enterPassword(process.env.ADMIN_PASSWORD!);
-  await loginObject.clickLogin();
-  await loginObject.afterLogin();
+  await utils.login();
 
   console.log("Login.....");
 });
 
-After(async function ({ result }) {
-  if (result?.status === Status.FAILED) {
-    await page.screenshot({ path: "error.png" });
+After(async ({ error, pickle }) => {
+  if (error) {
+    console.log(error);
+    await page.screenshot({
+      path: `screenshots/${pickle.name}_${randomstring.generate()}.png`,
+    });
   }
 });
