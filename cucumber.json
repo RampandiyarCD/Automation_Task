@@ -7,7 +7,21 @@
     "paths": ["src/features/"],
     "require": ["src/stepDefinition/*.ts", "src/support/hooks.ts"],
     "requireModule": ["ts-node/register"],
-    "format": ["json:reports/json/report.json", "rerun:@rerun.txt"],
-    "parallel": 1
+    "format": [
+      "json:reports/json/report.json",
+      "rerun:reports/rerun/@rerun.txt"
+    ]
+  },
+  "rerun": {
+    "formatOptions": {
+      "snippetInterface": "async-await"
+    },
+    "dryRun": false,
+    "require": ["src/stepDefinition/*.ts", "src/support/hooks.ts"],
+    "requireModule": ["ts-node/register"],
+    "format": [
+      "json:reports/json/report.json",
+      "rerun:reports/rerun/@rerun.txt"
+    ]
   }
 }

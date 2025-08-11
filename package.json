@@ -8,7 +8,7 @@
     "test:dash": "cucumber-js --tags=@dashboard",
     "test:user": "cucumber-js --tags=@User",
     "report": "ts-node report.ts",
-    "rerun": "npx cucumber-js @rerun.txt"
+    "rerun": "cucumber-js -p rerun reports/rerun/@rerun.txt"
   },
   "keywords": [],
   "author": "",

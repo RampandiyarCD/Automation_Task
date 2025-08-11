@@ -29,13 +29,10 @@ BeforeAll(async () => {
   const utils = new Utils();
 
   await loginPage.navigateUrl();
-  await utils.login();
-
-  console.log("Login.....");
 });
 
-After(async ({ error, pickle }) => {
-  if (error) {
+After(async ({ error, result,pickle }) => {
+  if (error || result.status==="FAILED") {
     console.log(error);
     await page.screenshot({
       path: `screenshots/${pickle.name}_${randomstring.generate()}.png`,
